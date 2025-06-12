@@ -478,6 +478,7 @@ ol {
 .feature-item {
 	height: 415px;
 	position: relative;
+	cursor: pointer;
 }
 
 .feature-item:after {
@@ -489,6 +490,7 @@ ol {
 	top: 0;
 	background: #000;
 	opacity: .65;
+	pointer-events: none; /* allow clicks through overlay */
 }
 
 .feature-item .cata {
@@ -514,6 +516,16 @@ ol {
 .feature-item .fi-content .fi-comment {
 	font-size: 12px;
 	opacity: .54;
+}
+
+.feature-item:after,
+.feature-item .fi-content {
+	transition: opacity .3s ease;
+}
+
+.feature-item:hover:after,
+.feature-item:hover .fi-content {
+	opacity: 0;
 }
 
 /*----------------------

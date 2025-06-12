@@ -76,5 +76,28 @@ $(window).on('load', function() {
 	    duplicated: true
 	});
 
-})(jQuery);
+	/*------------------
+        Make feature-item fully clickable
+    --------------------*/
+    $(document).on('click', '.feature-item', function (e) {
+        // If user clicked directly on an <a>, allow normal behaviour
+        if ($(e.target).is('a')) {
+            return;
+        }
+        var $link = $(this).find('h5 a').first();
+        var href = $link.attr('href');
+        if (!href || href === '#') {
+            return; // nothing to follow
+        }
+        var target = $link.attr('target');
+        if (target === '_blank') {
+            window.open(href, '_blank');
+        } else if (href.startsWith('#')) {
+            // Jump to anchor within page
+            window.location.hash = href;
+        } else {
+            window.location = href;
+        }
+    });
 
+})(jQuery);
